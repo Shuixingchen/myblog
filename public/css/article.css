@@ -1,0 +1,75 @@
+
+
+.a_title p{
+	text-align: center;
+    font-size: 22px;
+    margin: 20px 0;
+    color: #000;
+}
+
+.a_title .box{
+	border: #ccc 1px dashed;
+    text-align: center;
+    padding: 5px 0;
+    margin: 0 30px 10px 30px;
+}
+
+/*文章内容*/
+.a_content p{
+	text-indent:2em;
+	line-height: 26px;
+    font-size: 14px;
+    overflow: hidden;
+    padding: 0 30px 15px 30px;
+    zoom: 1;
+}
+
+/*分享部分*/
+.share{
+	margin-top:30px;
+	margin: 50px 0 20px 0;
+	font-size: 14px;
+}
+
+
+
+
+
+
+
+
+/*留言板部分*/
+.message{
+	margin-top: 30px;
+	/*width:75%;*/
+	/*border:1px solid red;*/
+}
+.message li{
+	padding-left: 5px;
+	font-size: 14px;
+	color:#272a30;
+	margin-top:10px;
+	background:#F9F9F9;
+}
+
+.message li .leave_message{
+	text-indent: 2em;
+}
+
+.message .write_message{
+	font-size:14px;
+	padding-left:10px;
+	margin-top: 30px;
+}
+
+input{
+	margin-top: 10px;
+}
+
+.write_message button{
+	margin-top:20px;
+	height:20px;
+	width:100px;
+	background:#bbb;
+	border:0;
+}
