@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>飞机大战</title>
+	<script src="./public/js/jquery-1.12.3.min.js"></script>
+	<style>
+		.back{
+			width:480px;
+			height:750px;
+			margin:0 auto;
+			overflow:hidden;
+			position:absolute;
+			z-index: -1;
+			border:5px solid blue;
+		}
+		.back .score{
+			width:30px;
+			height:20px;
+			color:red;
+			background: #ccc;
+		}
+		
+	</style>
+</head>
+<body>
+
+	<div class="back" style="background:">
+		<img src="./public/images/background.png" >
+	
+
+	<div class="hero">
+		<img src="./public/images/hero.png" style="position:absolute;top:640px;left:10px;">
+	</div>
+	<div id="dan"></div>
+	<div id='enemy'></div>
+	<div class="score"></div>
+	</div>
+
+	<script>
+	var score = 0;
+		$(window).keydown(function (event) {
+			var plane = $(".hero img");
+			
+			var x = parseInt(plane.css('left'));
+			
+			switch (event.keyCode) {
+
+				case 37:
+					//左
+					plane.css('left',x-15+'px');
+				break;
+				case 39:
+					// 右
+					plane.css('left',x+15+'px');
+				break;
+				case 32:
+				// 发射一个子弹
+					var herox = parseInt($('.hero img').css('left'))+50+'px';
+					$('#dan').append('<img src="./public/images/bullet1.png" style="position:absolute;top:630px;left:'+herox+'">');
+
+					var dan = $('#dan img').last();
+
+							var j = 5;
+							time = setInterval(function () {
+								dan.css('top',630-j+'px');
+								j+=40;
+								// each循环判断每个敌机是否被击中
+								$('#enemy img').each(function() {
+
+									var enemyx = parseInt($(this).css('left'));
+									var danx = parseInt(dan.css('left'));
+									//水平方向在击中范围
+									if (Math.abs(danx-enemyx)<60 && dan.attr('shoot')!=1) {
+										var enemyy = parseInt($(this).css('top'));
+										var dany = parseInt(dan.css('top'));
+									//垂直方向在击中
+										if ((dany-enemyy)<0) {
+											$(this).attr('src','./public/images/enemy_die.png');
+											var that = $(this);
+											dan.attr('shoot',1);
+											that.attr('shoot',that.attr('shoot')+1); //敌机中弹加一个属性shoot
+											dan.remove();
+											if (that.attr('shoot')>3) {
+												setTimeout(function (){
+													that.remove();
+													score++;
+													$('.score').html(score);
+												},100);
+											}
+											
+										}
+									}
+								});
+								
+								if (j > 600) {
+									// 删除定时器，删除子弹对象
+									$(dan).remove();
+								}
+
+
+							},100);//子弹的飞行速度
+
+				break;
+			}
+		});
+
+		
+		// 敌机出现
+		
+		setInterval(function () {
+
+			var ex = Math.random()*400+'px';
+			//水平位置随机出现一个敌机，增加到enemy的div最前面
+			$('#enemy').prepend('<img src="./public/images/enemy2.png" style="position:absolute;top:0px;left:'+ex+'">');
+
+			var j = 0;
+			var enemy = $('#enemy img').first();
+			enemy.attr('shoot',0);
+			var time = setInterval(function () {
+				
+				enemy.css('top',j+'px');
+				ex = parseInt(enemy.css('left'));
+				j+=10;
+				if (j>580 && j<750) {
+					// 获取hero的left值
+					var hx = parseInt($('.hero img').css('left'));
+					
+					if (Math.abs(hx-ex)<80 && enemy.attr('shoot')<3) {
+						// 相撞
+						$('.hero img').attr('src','./public/images/hero_die.png');
+						setTimeout(function() {
+							alert('GAME OVER');
+							location.reload();
+						},100);
+						
+					}
+						
+				}
+				if(j>750) {
+					// 删除这个敌机
+					enemy.remove();
+				}
+			},50); //敌机移动速度
+			
+		},1000); //敌机产生速度
+
+
+	</script>
+	
+</body>
+</html>
