@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>后台模板</title>
+    <script src="/public/adminstyle/js/jquery.js"></script>
+    <link rel="stylesheet" href="/public/adminstyle/css/add.css" />
+    <link rel="stylesheet" href="/public/adminstyle/css/bootstrap.css" />
+</head>
+<body>
+<div class="route_bg">
+    <a href="/admin" target="_top">返回主页</a>
+    >
+    <span>编辑文章</span>
+</div>
+<div  style="width: 500px;">
+    <form action="/admin/article/doEdit" method="post">
+        <input type="hidden" name="id" value=<%=info[0].id%>>
+        <div class="control-group">
+            <label class="laber_from">分类</label>
+            <div class="controls">
+                <select class="input_select" name="tname">
+
+                <%for (var i=0;i<types.length;i++){%>
+
+                    <% if(info[0].tname == types[i].tname) { %>
+                        <option selected value="<%=types[i].tname%>"><%=types[i].tname%></option>
+                    <% } else { %>
+                        <option value="<%=types[i].tname%>"><%=types[i].tname%></option>
+                    <% } %>
+                <% } %>
+                </select>
+
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="laber_from">文章题目</label>
+            <div class="controls"><input name="title" class="input_from"  type="text" value=<%=info[0].title%>><p class="help-block"></p></div>
+        </div>
+        <div class="control-group">
+            <label class="laber_from">排序权重</label>
+            <div class="controls"><input name="sort" class="input_from"  type="number" value=<%=info[0].sort%>><p class="help-block"></p></div>
+        </div>
+        
+        <div class="control-group">
+            <label class="laber_from">状态</label>
+            <div class="controls">
+                <select class="input_select" name="status">
+
+                <% if(info[0].status == 1) { %>
+                    <option selected value="1">公开</option>
+                <% } else { %>
+                    <option selected value="2">私有</option>
+                <% } %>
+                    
+                </select>
+            </div>
+        </div>
+       <div>
+           <textarea name="content" cols="150" rows="20" ><%=info[0].content%></textarea>          
+       </div>
+        <div class="control-group">
+            <label class="laber_from"></label>
+            <div class="controls"><button class="btn btn-success" style="width:120px;">确认</button></div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/css/common.css" rel="stylesheet">
+    <link href="/public/css/article.css" rel="stylesheet">
+    <style>
+        .left{border:1px solid #ccc;}
+    </style>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/public/jquery-1.12.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/public/js/bootstrap.min.js"></script>
+<div class="container">
+    <!-- 页头部分 -->
+    <div class="page-header">
+        <h1>Example page header <small>Subtext for header</small></h1>
+    </div>
+    <!-- 导航栏部分 -->
+    <ul class="nav nav-pills">
+        <li><a href="/">首页</a></li>
+    <%for (var i=0;i<types.length;i++){%>
+
+        <li><a href="/type?tname=<%=types[i].tname%>"><%=types[i].tname%></a></li>
+        
+    <%}%>
+    </ul>
+
+    <!-- 内容部分 -->
+    <div class="row">
+       
+        <div class="col-md-10">
+         <!-- 文章部分 -->
+            <div class="left">
+                <div class="a_title">
+                    <p><%=info[0].title%></p>
+                    <div class="box">
+                        <%=info[0].addtime%>
+                    </div>
+                </div>
+                <div class="a_content">
+                    <p><%-info[0].content%></p>                      
+                </div>
+            </div>
+            <!-- 分享部分 -->
+            <div class="share">
+                <span>分享到：</span>
+                <a href="">新浪微博</a>
+                <a href="">qq空间</a>
+            </div>
+            <hr>
+            
+            <!-- 展示评论部分 -->
+            <div class="message">
+                <div class="show_message">
+                    <ul>
+                        <li>
+                            <p><span><a href="">张三</a></span>|<span>2016-1-1</span></p>
+                            <p class="leave_message">第一条留言</p>
+                        </li>
+                        <li>
+                            <p><span><a href="">李四</a></span>|<span>2016-1-1</span></p>
+                            <p class="leave_message">第二条留言</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 填写评论 -->
+            <div class="write_message">
+                <p>欢迎评论</p>
+                <form action="" method="post" name="message">
+                    <div class="m">
+                        <span>姓名：</span>
+                        <input type="text" name="username">
+                    </div>
+                    <div class="m">
+                        <span>站点：</span>
+                        <input type="text" name="website">
+                    </div>
+                    <div class="m">
+                        <span>邮箱：</span>
+                        <input type="text" name="mail">
+                        <span>(不公开)</span>
+                    </div>
+                    <div class="m">
+                        <p>&nbsp</p>
+                        <span>留言:</span>
+                        <textarea name="" id="" cols="50" rows="5"></textarea>
+                    </div>
+                    
+                    <button>提交留言</button>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>后台模板</title>
+    <script src="/public/adminstyle/js/jquery.js"></script>
+    <link rel="stylesheet" href="/public/adminstyle/css/add.css" />
+    <link rel="stylesheet" href="/public/adminstyle/css/bootstrap.css" />
+</head>
+<body>
+<div class="route_bg">
+    <a href="/admin" target="_top">返回主页</a>
+    >
+    <span>编辑分类信息</span>
+</div>
+<div class="div_from_aoto" style="width: 500px;">
+    <form action="/admin/type/doEdit" method="post">
+        <input type="hidden" name="tid" value=<%=type[0].id%>>
+       
+        <div class="control-group">
+            <label class="laber_from">类名</label>
+            <div class="controls"><input name="tname" class="input_from" placeholder="输入类名" type="text" value=<%=type[0].tname%>><p class="help-block"></p></div>
+        </div>
+        <div class="control-group">
+            <label class="laber_from"></label>
+            <div class="controls"><button class="btn btn-success" style="width:120px;">确认</button></div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

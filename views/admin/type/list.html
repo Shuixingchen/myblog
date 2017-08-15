@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>后台模板</title>
+    <script src="/public/adminstyle/js/jquery.js"></script>
+    <link rel="stylesheet" href="/public/adminstyle/css/add.css" />
+    <link rel="stylesheet" href="/public/adminstyle/css/bootstrap.css" />
+    <style>
+        td,tr,th{border:1px solid #ddd;}
+    </style>
+</head>
+<body>
+    <div class="route_bg">
+        <a href="../index.php" target="_top">返回主页</a>
+        >
+        <span>分类列表</span>
+    </div>
+    
+    <div class="col-md-10" style="margin-top:5px;">
+        <div class="content">
+            <table  class="table table-hover">
+                <tr>
+                    <th>id</th>
+                    <th>分类名</th>
+                    <th>操作</th>
+
+                </tr>
+                <%for (var i=0;i<types.length;i++){%>
+                    <tr>
+                        <td><%=types[i].id%></td>
+                        <td><%=types[i].tname%></td>
+                        <td>
+                            <a href="/admin/type/edit?tid=<%=types[i].id%>">编辑</a>
+                            <a href="/admin/type/del?tid=<%=types[i].id%>">删除</a>
+                        </td>
+                    </tr>
+                <%}%>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
